@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+<style>
+	.pointer{
+		cursor: pointer;
+	}
+    .adj1{
+        line-height: 20%;
+    }
+	#hide{
+		color: crimson;
+		display: none;
+	}
+	.dropdown-menu {
+		width: 300px !important;
+		height: 250px !important;
+		line-height: 40%;
+	}
+</style>	
+<div class="container-fluid">
+	<div class="row justify-content-md-center"> 
+		<div class="col-12 col-md-4 text-center">
+            <h1>Lottery check</h1>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="ค้นหา">
+                <button type="button" class="btn btn-primary" onclick="badLuck()">ค้นหา</button>
+			</div>  
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th scope="col">รางวัลที่</th>
+						<th scope="col">หมายเลขที่ถูกรางวัล</th>
+						<th scope="col">จำนวนเงินรางวัล</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td scope="row"></th>
+						<td></td>
+						<td></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<h id="hide" >เสียใจด้วย คุณไม่ถูกรางวัล</h>
+			
+        </div>
+	</div>
+</div>
+<script>
+	function badLuck() {
+		var x = document.getElementById("hide");
+		x.style.display = "block";
+	}
+</script>
+<%- include("partials/footer") %>

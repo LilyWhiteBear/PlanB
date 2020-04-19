@@ -1,0 +1,97 @@
+<%- include("partials/header") %>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-6 text-center">
+                <div class="card-img-top"><img class="img-fluid" src=<%= l.image %>></div>
+            </div>
+            <div class="col-md-12 col-lg-6 text-center">
+                <ul class="list-inline head">
+                    <li class="list-inline-item">สลากหมายเลข : </li>
+                    <li class="list-inline-item"><%= l.number %></li>
+                </ul>
+                <ul class="list-inline buy">
+                    <li class="list-inline-item">จำนวน </li>
+                    <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-secondary btn-sm" id="minus" onclick=Dec()>-</button></li>
+                    <li class="list-inline-item" id="Lot-Type"><input type="text" class="form-control" id="proc" value="1" size="1" onkeypress="return onlyNumberKey(event)"></li>
+                    <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-secondary btn-sm" id="plus" onclick=Inc()>+</button></li>
+                </ul>
+                <p id="warning">ไม่สามารถเพิ่ม/ลดจำนวนสลากไปกว่านี้</p>
+                <ul class="list-inline type">
+                    <li class="list-inline-item">ราคาต่อสลาก </li>
+                    <li class="list-inline-item" id="pricePerOne"><%= l.price %></li>
+                    <li class="list-inline-item"> บาท</li>
+                </ul>
+                <ul class="list-inline type">
+                    <li class="list-inline-item">ราคารวม </li>
+                    <li class="list-inline-item" id="price"><%= l.price %></li>
+                    <li class="list-inline-item"> บาท</li>
+                </ul>
+                <ul class="list-inline buy">
+                    <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-success btn-sm" href="#">เพิ่มไปยังรถเข็น</button></li>
+                    <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-danger btn-sm" href="#">ซื้อทันที</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        function onlyNumberKey(evt) { 
+              
+              var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+              if (ASCIICode > 31 && (ASCIICode < 49 || ASCIICode > 57)){
+                document.getElementById("warning").style.visibility = "visible";
+                document.getElementById("warning").innerHTML = "กรุณาใส่จำนวนสลาก 1-9 เท่านั้น";
+                return false;
+              }
+    
+                
+              return true; 
+          } 
+    
+        function Inc() {
+            var ch = document.getElementById("proc").value;
+            var i = ch.codePointAt(0);
+            var price = document.getElementById("pricePerOne").innerHTML;
+            if(i < 57){
+                i++;
+                document.getElementById("proc").value = String.fromCodePoint(i);
+                document.getElementById("price").innerHTML = (i - 48) * parseInt(price);
+                document.getElementById("warning").style.visibility = "hidden";
+            }
+            else if(i === 57){
+                document.getElementById("plus").disable = true;
+                document.getElementById("warning").style.visibility = "visible";
+                document.getElementById("warning").innerHTML = "ไม่สามารถเพิ่ม/ลดจำนวนสลากไปกว่านี้";
+            }
+            if(i === 50){
+                document.getElementById("minus").disable = false;
+                document.getElementById("warning").style.visibility = "hidden";
+                document.getElementById("warning").innerHTML = "ไม่สามารถเพิ่ม/ลดจำนวนสลากไปกว่านี้";
+            }
+            
+        }
+        function Dec() {
+            var ch = document.getElementById("proc").value;
+            var i = ch.codePointAt(0);
+            var price = document.getElementById("pricePerOne").innerHTML;
+            if(i > 49){
+                i--;
+                document.getElementById("proc").value = String.fromCodePoint(i);
+                document.getElementById("price").innerHTML = (i - 48) * parseInt(price);
+                document.getElementById("warning").style.visibility = "hidden";
+            }
+            else if(i === 49){
+                document.getElementById("minus").disable = true;
+                document.getElementById("warning").style.visibility = "visible";
+                document.getElementById("warning").innerHTML = "ไม่สามารถเพิ่ม/ลดจำนวนสลากไปกว่านี้";
+            }
+            if(i === 56){
+                document.getElementById("plus").disable = false;
+                document.getElementById("warning").style.visibility = "hidden";
+                document.getElementById("warning").innerHTML = "ไม่สามารถเพิ่ม/ลดจำนวนสลากไปกว่านี้";
+            }
+        }
+    
+    </script>
+
+<%- include("partials/footer") %>

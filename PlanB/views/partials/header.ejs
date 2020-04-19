@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    	<meta content="utf-8" http-equiv="encoding">
+	<title>
+	
+	</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" defer>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" defer></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" defer></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" defer></script>
+<style>
+	.pointer{
+		cursor: pointer;
+	}
+	.adj1{
+        line-height: 20%;
+    }
+	.ddlogin {
+		width: 300px !important;
+		height: 250px !important;
+		line-height: 40%;
+	}
+</style>	
+</head>
+<body>
+<div style="margin-bottom:60px">
+<nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+	<div class="navbar-header">
+     		<a class="navbar-brand" href="/">DokI DOki LitElAtuRe ClUb</a>
+    	</div>
+	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-expanded="false">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div id ="collapsibleNavbar" class="collapse navbar-collapse text-center collapse show">
+ 		<ul class="navbar-nav">
+    			<li class="nav-item">
+      				<a class="nav-link" href="/blogs">ร้านค้า</a>
+    			</li>
+    			<li class="nav-item">
+      				<a class="nav-link" href="/lotcheck">ตรวจสลาก</a>
+    			</li>
+    			<li class="nav-item">
+      				<a class="nav-link" href="#">ขึ้นเงิน</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">ดีใจจัง! กดแล้วได้ซื้อเลย</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">OX หรรษาพารวย</a>
+					<div class="dropdown-menu dropdown-menu-left">
+						<a class="dropdown-item" href="/game">เล่นเกม</a>
+						<a class="dropdown-item" href="#">ดูจำนวนชิ้นส่วน/แลกชิ้นส่วน</a>
+					</div>
+				</li>
+		</ul>
+		<ul class="nav navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">ตะกร้า</a>
+				<div class="dropdown-menu p-4 dropdown-menu-right">
+					<a class="dropdown-item" href="#"></a>
+					<button type="submit" class="btn btn-primary" style="float: right;">ชำระเงิน</button>				
+				</div>
+			</li>
+			<% if(locals.user){ %>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">สวัสดี <%= user.usr %></a>
+				<form class="dropdown-menu p-4 dropdown-menu-right ddlogin" method="POST" action="/users/login">
+					<div class="form-group">
+						<a href="#" style="vertical-align: text-bottom;">ตั้งค่าบัญชีผู้ใช้</a>
+					</div>
+					<div class="form-group">
+						<a href="#" style="vertical-align: text-bottom;">ตั้งค่าบัญชีรับเงิน</a>
+					</div>
+					<div class="form-group">
+						<a href="#" style="vertical-align: text-bottom; color: crimson;">ตรวจสอบชิ้นส่วน</a>
+					</div>
+					<div class="form-group">
+						<a href="/users/logout" style="vertical-align: text-bottom;">ออกจากระบบ</a>
+					</div> 
+				</form>
+			</li>
+			<% } %>
+			<% if(!locals.user){ %>
+    		<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-expanded="false">Log In</a>
+					<form class="dropdown-menu p-4 dropdown-menu-right ddlogin" method="POST" action="/users/login">
+						<div class="form-group">
+							<label for="usr">Name:</label>
+							<input type="text" class="form-control" name="username">
+						</div>
+						<div class="form-group">
+							<label for="pwd">Password:</label>
+							<input type="password" class="form-control" name="password">
+						</div> 
+						<a href="/users/register" style="vertical-align: text-bottom;">สมัครสมาชิก</a>
+						<button type="submit" class="btn btn-primary" style="float: right;" value="login">Sign In</button>
+					</form>
+			</li>
+			<% } %>
+		</ul>
+	</div>
+</nav>
+</div>

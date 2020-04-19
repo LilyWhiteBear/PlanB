@@ -1,0 +1,44 @@
+<%- include("partials/header") %>
+    <div class="container mb-3">
+        <br><br>
+        <div class="row justify-content-md-center">
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="ค้นหา">
+                    <button type="button" class="btn btn-primary">ค้นหา</button>
+                </div>
+                <div class="container" style="text-align: center;">
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">Monika1
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">Monika2
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">Monika3
+                        </label>
+                    </div> 
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="display:flex; flex-wrap: wrap;">
+            <% Lottery.forEach(function(l){ %>
+                <div class="col-sm-6 col-md-3 img-thumbnail" style="text-align: center;">
+                    <img class="img-fluid" src=<%= l.image %>>
+                    <p><%= l.number %></p>
+                    <p><%= l.price %></p>
+                    <p style="color: crimson;">-<%= l.discount %>%</p>
+                    <a class="btn btn-outline-primary" href="/blog/lotId=<%= l._id %>" role="button">buy now</a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+<%- include("partials/footer") %>
