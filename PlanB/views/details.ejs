@@ -1,11 +1,13 @@
 <%- include("partials/header") %>
     <br><br>
-    <div class="container">
+    <div class="container" >
         <div class="row">
+            
             <div class="col-md-12 col-lg-6 text-center">
                 <div class="card-img-top"><img class="img-fluid" src=<%= l.image %>></div>
             </div>
             <div class="col-md-12 col-lg-6 text-center">
+                <form class="form-group" action="/cart" method="post" style="margin: 2px auto;">
                 <ul class="list-inline head">
                     <li class="list-inline-item">สลากหมายเลข : </li>
                     <li class="list-inline-item"><%= l.number %></li>
@@ -13,7 +15,7 @@
                 <ul class="list-inline buy">
                     <li class="list-inline-item">จำนวน </li>
                     <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-secondary btn-sm" id="minus" onclick=Dec()>-</button></li>
-                    <li class="list-inline-item" id="Lot-Type"><input type="text" class="form-control" id="proc" value="1" size="1" onkeypress="return onlyNumberKey(event)"></li>
+                    <li class="list-inline-item" id="Lot-Type"><input type="text" class="form-control" id="proc" name="qty" value="1" size="1" onkeypress="return onlyNumberKey(event)"></li>
                     <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-secondary btn-sm" id="plus" onclick=Inc()>+</button></li>
                 </ul>
                 <p id="warning">ไม่สามารถเพิ่ม/ลดจำนวนสลากไปกว่านี้</p>
@@ -28,10 +30,16 @@
                     <li class="list-inline-item"> บาท</li>
                 </ul>
                 <ul class="list-inline buy">
-                    <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-success btn-sm" href="#">เพิ่มไปยังรถเข็น</button></li>
+                    <li class="list-inline-item" id="Lot-Type">
+                        <!-- ส่งข้อมูลไปยังรถเข็น -->
+                            <input type="hidden" name="lot_id" value="<%=l._id%>">
+                            <input type="submit" class="btn btn-success btn-sm" value="เพิ่มไปยังรถเข็น">
+                    </li>
                     <li class="list-inline-item" id="Lot-Type"><button type="button" class="btn btn-danger btn-sm" href="#">ซื้อทันที</button></li>
                 </ul>
+                </form>
             </div>
+            
         </div>
     </div>
     <script>

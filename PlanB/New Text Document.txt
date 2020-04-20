@@ -1,5 +1,8 @@
 cd C:\Users\LilyWhiteBear\Desktop\PlanA
 nodemon app.js
 
+cd C:\Users\LilyWhiteBear\Desktop\Git\PlanB
+npm start
+
 cd C:\Users\LilyWhiteBear\Desktop\PlanB
 npm start
