@@ -34,6 +34,7 @@ app.use(passport.session());
 
 app.get("*", function(req, res, next){
     res.locals.user = req.user || null;
+    res.locals.cart = req.cart || null;
     next();
 });
 

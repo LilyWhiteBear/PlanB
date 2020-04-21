@@ -60,14 +60,25 @@ router.post('/cart/', function(req, res){
           cart[lot_id] = {
           item : l._id,
           number : l.number,
-	        price : l.price,
+	        price : parseInt(l.price),
           qty : parseInt(lot_qty)
         }});
         }
     }
-      console.log(cart);
-      res.redirect("/");
+      res.redirect("/cart");
     })
+});
+
+router.get('/cart', function(req, res){
+  var cart = req.session.cart; //ตะกร้า
+  var displayCart = { items:[], total:0 };
+  var total = 0;
+  for(item in cart){
+    displayCart.items.push(cart[item]);
+    total += cart[item].qty * cart[item].price;
+  }
+  displayCart.total = total;
+  res.render("cart", {cart : displayCart});
 });
 
 router.get('/lotcheck', function(req, res, next) {

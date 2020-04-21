@@ -1,0 +1,35 @@
+<%- include("partials/header") %>
+<div class="container-fluid">
+	<div class="row justify-content-md-center"> 
+		<div class="col-12 col-md-8 text-center">
+            <h1>ตะกร้าสินค้า</h1>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th scope="col">หมายเลขสลาก</th>
+						<th scope="col">ราคาต่อชิ้น</th>
+                        <th scope="col">จำนวน</th>
+                        <th scope="col">ราคารวม</th>
+					</tr>
+					</thead>
+					<tbody>
+                        <% cart.items.forEach(function(lot){ %>
+                            <tr>
+                                <td scope="row"><a href="/blog/lotId=<%= lot.item %>"><%= lot.number %></a></th>
+                                <td><%= lot.price %> บาท</td>
+                                <td><%= lot.qty %> ชิ้น</td>
+                                <td><%= (lot.price * lot.qty) %> บาท</td>
+                            </tr>
+                        <% }) %>
+                        <tr>
+                            <td colspan="3">ราคารวมทั้งหมด</td>
+                            <td><%= cart.total %> บาท</td>
+                        </tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
+	</div>
+</div>
+<%- include("partials/footer") %>
